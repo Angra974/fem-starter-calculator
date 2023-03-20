@@ -50,8 +50,16 @@ body {
 .container {
     width: 400px;
     background: var(--bg-th1--main);
-      display: flex;
+    display: flex;
     flex-direction: column;
+}
+
+.container > * {
+	margin: 0 10px;
+}
+
+:is(.container, .container > *, .btns > *) {
+	border-radius: var(--b-radius);
 }
 
 .center {
@@ -73,10 +81,7 @@ body {
 }
 
 .menu_btns {
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  width: 100%;
+
 }
 
 
@@ -93,18 +98,21 @@ body {
 
 
 .btn {
-  border: 1px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 50px;
+	border: 1px solid white;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	min-height: 50px;
 }
 
 .reset {
-  grid-area: reset;
-  align-self: end;
+	grid-column: 1/3;
 }
 
 .equal {
-grid-area: equal;
+	grid-column: 3/5;
+}
+
+.warning {
+	outline: 2px solid red;
 }

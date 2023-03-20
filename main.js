@@ -91,11 +91,7 @@ class Calculator {
 
               // remove last input
               case 'del':
-                  // take off 1 char from this.display;
-                  // if num2, take off 1 char from num2
-                  // if num2 is null, take of operation if not null
-                  // take off num1 last char if not 0;
-                  // do nothing if num1 is 0;
+					this.doDeleteOne()
                   break;
            } // switch
     }
@@ -126,6 +122,51 @@ class Calculator {
         }
     }
 
+
+	doDeleteOne() {
+		// take off 1 char from this.display;
+                  // if num2, take off 1 char from num2
+                  // if num2 is null, take of operation if not null
+                  // take off num1 last char if not 0;
+                  // do nothing if num1 is 0;
+		// nothing to delete
+		if(this.display.textContent === '0') return;
+		// One char
+		if(this.display.textContent.length === 1 
+			|| (this.num1.length === 1 && this.operation === null)) {
+			this.clear();
+			return;
+		}
+		// num2
+		
+		if(this.operation === null && this.num1.length > 1)
+		{
+			this.num1 = this.removeLastChar(this.num1);
+			
+		} else {		
+			if(this.num2 === null) {
+				this.operation === null 
+				? this.num1 = this.removeLastChar(this.num1)
+				: this.operation = null;
+			} else {
+				this.num2.length === 1
+				? this.num2 = null
+				: this.num2 = this.removeLastChar(this.num2)
+			}
+		}
+		
+		// take off last char in the display
+		this.display.textContent = this.removeLastChar(this.display.textContent)
+	}
+
+	/**
+	* Remove the last char of a string
+	* @param {string} value : the string to take one char off
+	* @return {string} the modified string;
+	*/
+	removeLastChar(value) {
+		return value.substring(0,value.length-1)
+	}
     /**
      * Show the calculation result.
      * The value is put in num1 so we can perform another operation on this result.
